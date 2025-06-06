@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue May 20 17:46:28 2025
-
+GPT was used for debugging/organization/library suggestions
 @author: junwkim
 """
 import click
