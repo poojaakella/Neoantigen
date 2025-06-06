@@ -46,4 +46,9 @@ Example usage
   --hla A
  ```
 
+### Contributions
+
+Aim 1: Ady, Jun, Yugendran
+Aim 2: Pooja, Gloria
+Aim 3: Jun
    
