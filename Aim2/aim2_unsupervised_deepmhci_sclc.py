@@ -185,7 +185,7 @@ def generate_plots(name, kmeans_labels_list, kmeans_scores_list, ks, dbscan_labe
     plt.show()
 
     # K-means plots (PCA and UMAP side by side for each pair)
-    
+    # ChatGPT used to generate code to plot and format
     for idx, (kmeans_labels, kmeans_score) in enumerate(zip(kmeans_labels_list, kmeans_scores_list)):
         plt.figure(figsize=(14, 5))  # Wider for side-by-side subplots
 
