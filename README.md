@@ -20,7 +20,11 @@ Neoantigen_screening_deepMHCI allows users to screen for potential neoantigens i
     ```bash
     conda activate deepmhci
     ```
-4. Usage:
+4. Prepare the dataset (could not be uploaded due to the large size)
+   4.1 Download the dataset (https://cbioportal-datahub.s3.amazonaws.com/ccle_broad_2019.tar.gz)
+   4.2 Move data_mutations.txt file to the data folder in the root directory (not deepmhci directory)
+
+5. Usage:
 
 Once installed and activated, run the screening script in a terminal:
 
