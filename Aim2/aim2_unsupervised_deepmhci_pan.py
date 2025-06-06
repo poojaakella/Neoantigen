@@ -410,7 +410,7 @@ def kmeans(name, X_scaled, k=None, n_components=50):
 def plot_kmeans_scores_projections(data_dict, n_components, kmeans_sil_list_1, kmeans_sil_list_2, ks):
     kmeans_sil_A1, kmeans_sil_B1, kmeans_sil_AB1 = kmeans_sil_list_1
     kmeans_sil_A2, kmeans_sil_B2, kmeans_sil_AB2 = kmeans_sil_list_2
-
+    # ChatGPT was used to generate code to format plots
     # Plot silhouette scores vs k
     plt.figure(figsize=(10, 6))
     plt.plot(ks, kmeans_sil_A1, marker='o', label='HLA-A, limit 0.1')
