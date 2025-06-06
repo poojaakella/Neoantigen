@@ -176,7 +176,7 @@ def lda_kmeans_project(data, subtypes):
 
     return X_lda, subtypes['Subtype'], kmeans_labels
 
-# -- Prepare the datasets --
+# Dataset preparation
 datasets = [
     (data_hla_A_1, "DeepMHC 0.1 HLA-A"),
     (data_hla_B_1, "DeepMHC 0.1 HLA-B"),
@@ -188,7 +188,6 @@ datasets = [
 
 fig, axes = plt.subplots(nrows=2, ncols=6, figsize=(30, 10))  # 2 rows, 6 columns
 
-# -- For collecting handles/labels --
 handles_top = []
 labels_top = []
 handles_bottom = []
@@ -219,7 +218,7 @@ for i, (data, name) in enumerate(datasets):
 
     axes[1, i].legend_.remove()
 
-# -- Add shared legends --
+# Legends
 fig.legend(handles_top, labels_top, title="Subtype", loc='upper center', ncol=len(labels_top), bbox_to_anchor=(0.5, 1.08))
 fig.legend(handles_bottom, labels_bottom, title="KMeans Cluster", loc='lower center', ncol=len(labels_bottom), bbox_to_anchor=(0.5, -0.05))
 
