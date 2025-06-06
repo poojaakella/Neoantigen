@@ -25,6 +25,8 @@ Neoantigen_screening_deepMHCI allows users to screen for potential neoantigens i
 Once installed and activated, run the screening script in a terminal:
 
   ```bash
+  cd deepmhci \
+ 
   python neoantigen_screening_deepMHCI.py \
 
   --cancer <SCLC|NSCLC|pan> \
