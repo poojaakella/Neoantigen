@@ -1,3 +1,4 @@
+#Author: Yugendran Rajaendran
 from mhcflurry.class1_affinity_predictor import Class1AffinityPredictor
 import pandas as pd
 from tqdm import tqdm
