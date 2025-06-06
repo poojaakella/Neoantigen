@@ -1,4 +1,4 @@
-#Author: Yugendran Rajaendran
+#Author: Jun Woo Kim & Yugendran Rajaendran 
 import os
 import re
 import pandas as pd
