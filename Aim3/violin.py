@@ -1,3 +1,4 @@
+#GPT was used for debugging/organization/library suggestions
 import matplotlib.pyplot as plt
 import seaborn as sns
 import re
