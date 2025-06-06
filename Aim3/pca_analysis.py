@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Wed May 21 10:37:26 2025
-
+GPT was used for debugging/organization/library suggestions
 @author: junwkim
 """
 import pandas as pd
