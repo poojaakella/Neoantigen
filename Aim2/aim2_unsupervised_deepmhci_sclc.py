@@ -50,8 +50,6 @@ data_hla_AB_2 = pd.read_csv('/content/drive/Shareddrives/BMI212/Analysis/results
 subtype_path = "/content/drive/Shareddrives/BMI212/AIM2/subtype_mapping.xlsx"
 subtype_df = pd.read_excel(subtype_path, index_col=0, header=0)
 
-# data_names = ['HLA-A', 'HLA-B', 'HLA-A and HLA-B']
-# data = [data_hla_A, data_hla_B, data_hla_AB]
 data_names_1 = ['SCLC: HLA-A, 0.1', 'SCLC: HLA-B, 0.1', 'SCLC: Combined, 0.1']
 data_1 = [data_hla_A_1, data_hla_B_1, data_hla_AB_1]
 
@@ -87,20 +85,6 @@ for idx, (data, name) in enumerate(zip(data_2, data_names_2)):
 plt.tight_layout()
 plt.show()
 
-# Merges on sample ID
-# merged_A = data_hla_A.merge(subtype_df, left_index=True, right_index=True)
-# merged_hla_A = merged.dropna(subset=["Subtype"])
-
-# merged = data_hla_B.merge(subtype_df, left_index=True, right_index=True)
-# merged_hla_B = merged.dropna(subset=["Subtype"])
-
-# # merged = data_hla_AB.merge(subtype_df, left_index=True, right_index=True)
-# # merged_hla_AB = merged.dropna(subset=["Subtype"])
-
-# print(f"HLA-A: {merged_hla_A.shape}")
-# print(f"HLA-B: {merged_hla_B.shape}")
-# print(f"HLA-A and HLA-B: {merged_hla_AB.shape}")
-
 # Scale data
 scaler = StandardScaler()
 
@@ -111,8 +95,6 @@ data_hla_AB_1_scaled = scaler.fit_transform(data_hla_AB_1)
 data_hla_A_2_scaled = scaler.fit_transform(data_hla_A_2)
 data_hla_B_2_scaled = scaler.fit_transform(data_hla_B_2)
 data_hla_AB_2_scaled = scaler.fit_transform(data_hla_AB_2)
-
-# data_scaled = [data_hla_A_scaled, data_hla_B_scaled, data_hla_AB_scaled]
 
 data_scaled_1 = [data_hla_A_1_scaled, data_hla_B_1_scaled, data_hla_AB_1_scaled]
 data_scaled_2 = [data_hla_A_2_scaled, data_hla_B_2_scaled, data_hla_AB_2_scaled]
@@ -146,15 +128,6 @@ plt.tight_layout()
 plt.show()
 
 """#### Clustering: K-Means and DBSCAN"""
-
-# merged_hla_A_scaled = scaler.fit_transform(merged_hla_A.drop(columns=["Subtype"]))
-# merged_hla_B_scaled = scaler.fit_transform(merged_hla_B.drop(columns=["Subtype"]))
-# merged_hla_AB_scaled = scaler.fit_transform(merged_hla_AB.drop(columns=["Subtype"]))
-
-# merged_scaled = [merged_hla_A_scaled, merged_hla_B_scaled, merged_hla_AB_scaled]
-
-# for data, name in zip(merged_scaled, data_names):
-#   print(f"{name}: {data.shape}")
 
 # K-Means Clustering
 def kmeans(name, X_scaled, k=None):
@@ -212,6 +185,7 @@ def generate_plots(name, kmeans_labels_list, kmeans_scores_list, ks, dbscan_labe
     plt.show()
 
     # K-means plots (PCA and UMAP side by side for each pair)
+    
     for idx, (kmeans_labels, kmeans_score) in enumerate(zip(kmeans_labels_list, kmeans_scores_list)):
         plt.figure(figsize=(14, 5))  # Wider for side-by-side subplots
 
@@ -749,15 +723,6 @@ pca_B = PCA(n_components=2)
 X_pca_B = pca_B.fit_transform(unique_hla_B_filtered_scaled)
 generate_plots('HLA-B', kmeans_labels_B, kmeans_sil_B, ks, dbscan_labels_B, X_pca_B, unique_hla_B_filtered_scaled)
 
-# unique_hla_AB_filtered, unique_hla_AB_filtered_scaled = get_unique_genes(data_hla_AB, 'HLA-AB')
-
-# # Both HLA-A and HLA-B binders
-# kmeans_labels_AB, kmeans_sil_AB = kmeans('HLA-A and HLA-B', unique_hla_AB_filtered_scaled, k=4)
-# dbscan_labels_AB, dbscan_sil_AB = dbscan('HLA-A and HLA-B', unique_hla_AB_filtered_scaled)
-# pca_AB = PCA(n_components=2)
-# X_pca_AB = pca_AB.fit_transform(unique_hla_AB_filtered_scaled)
-# generate_plots('HLA-A and HLA-B', kmeans_labels_AB, dbscan_labels_AB, X_pca_AB, unique_hla_AB_filtered_scaled)
-
 """##### Clustering on Further Filtered Genes"""
 
 # Establish a high signal mask to further filter important genes
@@ -778,38 +743,7 @@ def signal_threshold(data, name):
   pca = PCA(n_components=2)
   X_filtered_threshold_pca = pca.fit_transform(X_filtered_threshold_scaled)
   generate_plots(name, kmeans_filtered_threshold_labels, kmeans_sil, ks, dbscan_filtered_threshold_labels, X_filtered_threshold_pca, X_filtered_threshold_scaled)
-
-
-  # plt.figure(figsize=(14, 10))
-
-  # # 1. K-means clustering
-  # plt.subplot(2, 2, 1)
-  # sns.scatterplot(x=X_filtered_threshold_pca[:, 0], y=X_filtered_threshold_pca[:, 1], hue=kmeans_filtered_threshold_labels, palette='Set2')
-  # plt.title("K-means (PCA Projection; Further Filtered Genes)")
-  # plt.xlabel("PCA 1")
-  # plt.ylabel("PCA 2")
-
-  # # 2. DBSCAN clustering
-  # plt.subplot(2, 2, 2)
-  # sns.scatterplot(x=X_filtered_threshold_pca[:, 0], y=X_filtered_threshold_pca[:, 1], hue=dbscan_filtered_threshold_labels, palette='Set1')
-  # plt.title("DBSCAN (PCA Projection; Further Filtered Genes)")
-  # plt.xlabel("PCA 1")
-  # plt.ylabel("PCA 2")
-
-  # # 3. UMAP (using K-means labels)
-  # plt.subplot(2, 2, 3)
-  # umap_model = umap.UMAP(n_neighbors=15, min_dist=0.1, random_state=42)
-  # X_umap_filtered_threshold = umap_model.fit_transform(X_filtered_threshold_scaled)
-  # sns.scatterplot(x=X_umap_filtered_threshold[:, 0], y=X_umap_filtered_threshold[:, 1], hue=kmeans_filtered_threshold_labels, palette='Set2')
-  # plt.title("UMAP Projection with K-means Clusters; Further Filtered Genes")
-  # plt.xlabel("UMAP 1")
-  # plt.ylabel("UMAP 2")
-  # plt.legend(title="Cluster")
-  # plt.tight_layout()
-  # plt.show()
-
-  # plt.tight_layout()
-  # plt.show()
+    
 
 # HLA-A binders
 signal_threshold(data_hla_A, 'HLA-A')
