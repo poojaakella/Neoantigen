@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu May 15 11:03:21 2025
-
+GPT was used for debugging/organization/library suggestions
 @author: junwkim
 """
 
